@@ -12,4 +12,20 @@ class Viewer
     @@all
   end
   
+  def queueitems
+    QueueItem.all.select do |queueitem|
+    queueitem.viewer == self
+    end
+  end
+
+  def movies
+    self.queueitems.map{|queueitem|queueitem.movie}
+  end
+
+  def self.all_usernames
+    self.all.map {|x| x.username}
+  end
+
+
+
 end
